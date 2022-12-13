@@ -15,13 +15,13 @@ for a in puzzle:
     elif '$ cd /' in a:
         currentDir = '/'
     elif 'cd ..' in a:
-        currentDir = ''.join([z for z in re.split('(\/[a-zA-Z]+)', currentDir) if z!=''][:-1])
+        currentDir = '/'.join(currentDir.split('/')[:-1])
     elif a[0].isdigit():
         recursive = currentDir
         directories['/'] += int(re.sub('[^0-9]', '', a))
         while recursive != '/':
             directories[recursive] += int(re.sub('[^0-9]', '', a))
-            recursive = ''.join([z for z in re.split('(\/[a-zA-Z]+)', recursive) if z!=''][:-1])
+            recursive = '/'.join(recursive.split('/')[:-1])
             if recursive == '':
                 recursive = '/'
     
